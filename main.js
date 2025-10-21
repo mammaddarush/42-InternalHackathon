@@ -51,10 +51,36 @@ function getCoalitionClass(coalitionId) {
     default: return '';
   }
 }
+const Status = Object.freeze({
+    0: '',
+    1: 'piciner',
+    2: 'student',
+    3: 'alumni',
+    4: 'bocal'
+});
+
+function determineStatus(user) {
+    if (user['staff?']) return Status[4]; // bocal
+    if (user.kind === 'student' && user['alumni?']) return Status[3]; // alumni
+    if (user.kind === 'student' && !user['alumni?'] && !user.coalition) return Status[1]; // piciner
+    if (user.kind === 'student' && !user['alumni?'] && user.coalition) return Status[2]; // cadet at 42cursus
+    return Status[0]; // default
+}
+
+const statusClassMap = {
+    'piciner': 'status-piciner',
+    'student': 'status-cadet',
+    'alumni': 'status-alumni',
+    'bocal': 'status-bocal'
+};
 
 data.forEach((student, index) => {
 	const card = document.createElement('div');
 	card.className = `card ${getCoalitionClass(student.coalition)}`;
+
+	const statusText = determineStatus(student); // get status
+    const statusClass = statusClassMap[statusText] || ''; // map to CSS class
+	console.log(statusClass)
 
 	card.innerHTML = `
 		<div class="card-top">
@@ -70,7 +96,8 @@ data.forEach((student, index) => {
 				alt="${student.login}" 
 				onerror="this.onerror=null;this.src='https://via.placeholder.com/210?text=42';"
 			/>
-			<div class="status-badge status-cadet">Cadet</div>
+			${statusText ? `<div class="status-badge ${statusClass}">${statusText}</div>` : ''}
+
 
 		</div>
 
