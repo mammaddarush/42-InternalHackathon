@@ -1,0 +1,118 @@
+import { data } from './data.js';
+
+const Coalition = Object.freeze({
+	1: 'Apollo 42',
+	2: 'Area 42',
+	3: 'Magrathea'
+  });
+  
+
+const Location = Object.freeze({
+	HEILBRONN: 'Heilbronn',
+	BERLIN: 'Berlin',
+	WOLFSBURG: 'Wolfsburg',
+	PARIS: 'Paris'
+  });
+  
+  function getRandomLocation() {
+	const values = Object.values(Location);
+	const randomIndex = Math.floor(Math.random() * values.length);
+	return values[randomIndex];
+  }
+
+  const Title = Object.freeze({
+	MASTERMIND: 'Mastermind',
+	MASTER_OF_HELL: 'Master of Hell 👹',
+	SWORD_OF_COALITION: '🗡️ Sword of $coalition_name',
+	WRITERS_SOUL: "Writer's soul"
+  });
+
+  function getRandomTitle(coalitionId) {
+	const titles = Object.values(Title);
+	const randomIndex = Math.floor(Math.random() * titles.length);
+	const title = titles[randomIndex];
+	
+	// Look up the coalition name from the ID
+	const coalitionName = Coalition[coalitionId] || 'Unknown';
+  
+	// Replace $coalition_name if present
+	return title.replace('$coalition_name', coalitionName);
+  }
+  
+  
+
+const container = document.getElementById('cardContainer');
+
+function getCoalitionClass(coalitionId) {
+  switch(coalitionId) {
+    case 1: return 'coalition-apollo';
+    case 2: return 'coalition-area';
+    case 3: return 'coalition-magrathea';
+    default: return '';
+  }
+}
+const Status = Object.freeze({
+    0: '',
+    1: 'piciner',
+    2: 'student',
+    3: 'alumni',
+    4: 'bocal'
+});
+
+function determineStatus(user) {
+    if (user['staff?']) return Status[4]; // bocal
+    if (user.kind === 'student' && user['alumni?']) return Status[3]; // alumni
+    if (user.kind === 'student' && !user['alumni?'] && !user.coalition) return Status[1]; // piciner
+    if (user.kind === 'student' && !user['alumni?'] && user.coalition) return Status[2]; // cadet at 42cursus
+    return Status[0]; // default
+}
+
+const statusClassMap = {
+    'piciner': 'status-piciner',
+    'student': 'status-cadet',
+    'alumni': 'status-alumni',
+    'bocal': 'status-bocal'
+};
+
+data.forEach((student, index) => {
+	const card = document.createElement('div');
+	card.className = `card ${getCoalitionClass(student.coalition)}`;
+
+	const statusText = determineStatus(student); // get status
+    const statusClass = statusClassMap[statusText] || ''; // map to CSS class
+	console.log(statusClass)
+
+	card.innerHTML = `
+		<div class="card-top">
+			<span class="card-number">#${String(index + 1).padStart(3, '0')}</span>
+			<div class="coalition-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 104" class="coalition-svg">
+					<polygon points="0,0 0,80.5 34.3,104 68,80.5 68,0" />
+				</svg>
+			</div>
+			<img 
+				class="profile-pic"
+				src="${student.image && student.image.link ? student.image.link : 'https://via.placeholder.com/210'}" 
+				alt="${student.login}" 
+				onerror="this.onerror=null;this.src='https://via.placeholder.com/210?text=42';"
+			/>
+			${statusText ? `<div class="status-badge ${statusClass}">${statusText}</div>` : ''}
+
+
+		</div>
+
+		<div class="card-middle">
+			<h3 class="intra-name">${student.displayname}</h3>
+			<p class="full-name"> ${student.login}</p>
+			<p class="city-name"> ${getRandomLocation()}</p>
+			<p class="location">${getRandomTitle(student.coalition)}</p>
+		</div>
+
+		<div class="card-bottom">
+			
+			
+		</div>
+	`;
+
+	container.appendChild(card);
+});
