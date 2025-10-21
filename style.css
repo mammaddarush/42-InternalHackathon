@@ -1,0 +1,156 @@
+.card-collection {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 20px;
+	justify-content: center;
+	padding: 20px;
+  }
+  
+.card {
+	width: 280px;
+	aspect-ratio: 2 / 3;
+	border-radius: 20px;
+	background: linear-gradient(145deg, #1c1c2e, #2a2a4a);
+	box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+	border: 3px solid #00ffff;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+  }
+  
+  /* Top Section */
+  .card-top {
+	position: relative;
+	height: 55%;
+	background: linear-gradient(to bottom, #111, #222);
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding-top: 0;
+	overflow: visible;
+  }
+  
+  .profile-pic {
+	width: 220px;
+	height: 220px;
+	border-radius: 50%;
+	border: 6px solid #00ffff;
+	box-shadow: 0 0 25px #00ffff;
+	position: relative;
+	z-index: 1;
+	margin-top: 0;
+  }  
+  
+  /* Overlapping Tags */
+  .card-number {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #00ffff;
+	text-shadow: 0 0 5px #00ffff;
+	z-index: 2;
+  }
+  
+  .coalition-icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 40px;
+	height: 60px;
+	z-index: 2;
+  }
+  
+  .coalition-svg {
+	width: 100%;
+	height: 100%;
+  }
+  
+  .coalition-apollo .coalition-svg polygon {
+	fill: #c62828; /* Red */
+  }
+  
+  .coalition-area .coalition-svg polygon {
+	fill: #6a1b9a; /* Purple */
+  }
+  
+  .coalition-magrathea .coalition-svg polygon {
+	fill: #2e7d32; /* Green */
+  }
+  
+  /* Middle Section */
+  .card-middle {
+	text-align: center;
+	margin-top: 20px;
+  }
+  
+  .intra-name {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #00ffff;
+	text-shadow: 0 0 5px #00ffff;
+  }
+  
+  .full-name {
+	font-size: 1em;
+	color: #ccc;
+	margin-top: 5px;
+  }
+  
+  .title {
+	font-size: 1em;
+	font-style: italic;
+	color: #ff69b4;
+	margin-top: 5px;
+  }
+  
+  /* Bottom Section */
+  .card-bottom {
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	font-size: 0.9em;
+	color: #ccc;
+  }
+  
+  /* Stat Row */
+  .stat-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  
+  .stat-icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	vertical-align: middle;
+  }
+  
+  /* Online Hours Scale */
+  .online-scale {
+	width: 100%;
+	height: 8px;
+	background: #333;
+	border-radius: 4px;
+	overflow: hidden;
+  }
+  
+  .online-fill {
+	height: 100%;
+	background: #00ffff;
+	width: 60%; /* Adjust dynamically */
+  }
+  
+  /* Footer */
+  .card-footer {
+	text-align: center;
+	font-size: 0.8em;
+	color: #888;
+	margin-bottom: 10px;
+  }
+  
