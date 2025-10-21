@@ -1,14 +1,17 @@
 enum Title: string {
-    case Mastermind = 'Mastermind';
-    case Hacker = 'Hacker';
-    case Strategist = 'Strategist';
+    case 0 = 'Mastermind';
+    case 1 = 'Master of Hell 👹';
+    case 2 = '🗡️ Sword of $coalition_name';
+    case 2 = 'Writer\'s soul';
     // Add more titles as needed
 }
 
 enum Status: string {
-    case Cadet = 'cadet at 42cursus';
-    case Alumni = 'alumni';
-    case Staff = 'staff';
+    case 0 = '';
+    case 1 = 'piciner';
+    case 2 = 'cadet at 42cursus';
+    case 3 = 'alumni';
+    case 4 = 'bocal';
 }
 
 enum Coalition: string {
@@ -20,6 +23,6 @@ enum Coalition: string {
 enum Location: string {
     case Heilbronn = 'Heilbronn';
     case Berlin = 'Berlin';
-    case Paris = 'Wolfsburg';
+    case Wolfsburg = 'Wolfsburg';
     case Paris = 'Paris';
 }
