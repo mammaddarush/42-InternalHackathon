@@ -70,6 +70,8 @@ data.forEach((student, index) => {
 				alt="${student.login}" 
 				onerror="this.onerror=null;this.src='https://via.placeholder.com/210?text=42';"
 			/>
+			<div class="status-badge status-cadet">Cadet</div>
+
 		</div>
 
 		<div class="card-middle">
@@ -80,10 +82,7 @@ data.forEach((student, index) => {
 		</div>
 
 		<div class="card-bottom">
-			<div class="stat-row">
-				<span>💰 Wallet</span>
-				<span>${student.wallet} ₳</span>
-			</div>
+			
 			<div class="stat-row">
 				<span>⭐ Correction Points</span>
 				<span>${student.correction_point}</span>
