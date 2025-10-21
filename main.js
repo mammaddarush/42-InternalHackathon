@@ -110,14 +110,7 @@ data.forEach((student, index) => {
 
 		<div class="card-bottom">
 			
-			<div class="stat-row">
-				<span>⭐ Correction Points</span>
-				<span>${student.correction_point}</span>
-			</div>
-			<div class="stat-row">
-				<span>🏆 Coalition</span>
-				<span>${Coalition[student.coalition]}</span>
-			</div>
+			
 		</div>
 	`;
 
